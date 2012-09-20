@@ -1,0 +1,13 @@
+@(message: String, servers: List[String])
+
+@main("Welcome to Play 2.0", servers) {
+Testing...
+<h1>@servers.size servers(s)</h1>
+<ul>
+    @servers.map { server =>
+    <li><a href="server/@server">@server</a></li>
+    }
+</ul>
+
+
+}

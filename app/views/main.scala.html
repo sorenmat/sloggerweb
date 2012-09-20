@@ -1,0 +1,46 @@
+@(title: String, servers: List[String])(content: Html)
+
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>@title</title>
+        <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
+        <link rel="stylesheet" type="text/css" media="screen" href="@routes.Assets.at("stylesheets/main.css")">
+        <script type="text/javascript" src="@routes.Assets.at("javascripts/jquery-1.7.1.js")"></script>
+        <script type="text/javascript" src="@routes.Assets.at("javascripts/jquery-play-1.7.1.js")"></script>
+        <script type="text/javascript" src="@routes.Assets.at("javascripts/underscore-min.js")"></script>
+        <script type="text/javascript" src="@routes.Assets.at("javascripts/backbone-min.js")"></script>
+        <script src="@routes.Assets.at("javascripts/flot/jquery.flot.js")"></script>
+    </head>
+    <body>
+    <header>
+        <a href="@routes.Application.index" id="logo"><span>Slogger</span>web</a>
+        <dl id="user">
+            <dt>UserName <span>email</span></dt>
+            <dd>
+
+            </dd>
+        </dl>
+    </header>
+    <nav>
+        <h4 class="dashboard"><a href="#/">Dashboard</a></h4>
+        <ul id="projects">
+            @DatabaseHelper.distinctServers.map { server =>
+
+            <li data-project="@server">
+                <a class="name" href="@routes.Application.server(server)">@server</a>
+                <span class="loader">Loading</span>
+            </li>
+
+            }
+        </ul>
+    </nav>
+    <section id="main">
+        <div style="overflow:scroll; width: 100%; height:100%">
+        @content
+
+        </div>
+    </section>
+    </body>
+</html>
